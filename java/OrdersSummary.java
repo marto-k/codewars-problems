@@ -1,46 +1,22 @@
-/*
-      
-      Ease the StockBroker
+/*Description:
 
-Clients place orders to a stockbroker as strings. The order can be simple or multiple.
+In mathematics, the factorial of a non-negative integer n, denoted by n!, is the product of all positive integers less than or equal to n. For example: 5! = 5 * 4 * 3 * 2 * 1 = 120. By convention the value of 0! is 1.
 
-Type of a simple order: Quote /space/ Quantity /space/ Price /space/ Status
+Write a function to calculate factorial for a given input. If input is below 0 or above 12 throw an exception of type ArgumentOutOfRangeException (C#) or IllegalArgumentException (Java).
 
-where Quote is formed of non-whitespace character, Quantity is an int, Price a double (with mandatory decimal point "." ), Status is represented by the letter B (buy) or the letter S (sell).
+More details about factorial can be found here: http://en.wikipedia.org/wiki/Factorial*/
 
-Example:
+sol:
 
-"GOOG 300 542.0 B"
+public class Factorial {
 
-A multiple order is the concatenation of simple orders with a comma between each.
+  public int factorial(int n) {
+        if (n == 0)
+            return 1;
 
-Example:
+        if (n < 0 || n > 12)
+            throw new IllegalArgumentException();
 
-"ZNGA 1300 2.66 B, CLH15.NYM 50 56.32 B, OWW 1000 11.623 B, OGG 20 580.1 B"
-
-To ease the stockbroker your task is to produce a string of type
-
-"Buy: b Sell: s" where b and s are 'double' formatted with no decimal (rounded to integers), b representing the total price of bought stocks and s the total price of sold stocks.
-
-Example:
-
-"Buy: 294990 Sell: 0"
-
-Unfortunately sometimes clients make mistakes. When you find mistakes in orders, you must pinpoint these badly formed orders and produce a string of type:
-
-"Buy: b Sell: s; Badly formed nb: badly-formed 1st simple order ;badly-formed nth simple order ;"
-
-where nb is the number of badly formed simple orders, b representing the total price of bought stocks with correct simple order and s the total price of sold stocks with correct simple order.
-
-Examples:
-
-"Buy: 263 Sell: 11802; Badly formed 2: CLH16.NYM 50 56 S ;OWW 1000 11 S ;"
-
-"Buy: 100 Sell: 56041; Badly formed 1: ZNGA 1300 2.66 ;" */
-
-
-
-
-
-
-
+        return n * factorial(n - 1);
+    }
+}
