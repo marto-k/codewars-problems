@@ -17,3 +17,24 @@
 //SystemOfEq.Solution(9,3) // => 1 
 //SystemOfEq.Solution(14,28) // => 1
 //SystemOfEq.Solution(4,20) // => 0 
+
+
+  Solution:
+  
+  
+  public class SystemOfEq
+{
+  public static int Solution(int n, int m) 
+  {
+    int count = 0;
+    for(int i = 1; i <= n ;i++)
+      for(int j = 0; j <=m; j++)
+      {
+          if(i*i + j == n && i + j*j ==m)
+            count++;
+
+      }
+     return count;
+  }
+
+}
