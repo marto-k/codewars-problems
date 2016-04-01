@@ -25,3 +25,56 @@
 //travel(r, "NY 56432") --> "NY 56432:High Street Pollocksville/786"
 
 //travel(r, "NY 5643") --> "NY 5643:/" 
+
+Solution:
+
+
+import java.util.*;
+
+public class Travel {
+  
+  private static ArrayList<String[]> splitInput;
+  private static String zip;
+  
+    public static String travel(String r, String zipcode) 
+    {
+      if (zipcode == "") return ":/"; 
+      else zip = zipcode;
+      
+      splitInput = new ArrayList<>();
+      findZipCodes(r, zipcode);
+      return stringify();      
+    }
+    
+    public static void findZipCodes(String addresses, String zip)
+    {
+      for (String addr : addresses.split(",")) {
+        if (addr.endsWith(zip)) {
+          addToArray(addr);
+        }
+      }
+    }
+    
+    public static void addToArray(String addr) 
+    {
+      String[] splitAddr = addr.substring(0, addr.length()-9).split(" ", 2);
+      String[] splitAddr2 = {splitAddr[1], splitAddr[0]};
+      splitInput.add( splitAddr2 );      
+    }
+        
+    public static String stringify()
+    {
+      String tmpAddr = "";
+      String tmpNum = "";
+      
+      for (String[] entry : splitInput) {
+        if (tmpAddr != "" && tmpNum != ""){
+          tmpAddr += ",";
+          tmpNum += ",";
+        }
+        tmpAddr += entry[0];
+        tmpNum += entry[1];
+      }
+      return zip + ":" + tmpAddr + "/" + tmpNum;
+    }
+}
